@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shvan Dev</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #00000000;
+      padding: 10px 0;
+      text-align: center;
+      z-index: 1;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0);
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00aaff00;
+    }
+
+    header {
+      height: 110vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.432), rgba(0, 0, 0, 0)),
+      url('https://i.ibb.co/NnTKK892/IMG-0083.jpg') no-repeat center center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    section {
+      padding: 100px 20px 60px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    #about, #contact {
+      background-color: #f9f9f900;
+      margin: 60px 0;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    #about img {
+      width: 150px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    #contact a {
+      color: #00aaff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    #contact a:hover {
+      color: #0077cc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #eee;
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    /* DARK MODE */
+    .dark-mode {
+      background-color: #111;
+      color: #fff;
+    }
+
+    .dark-mode nav {
+      background-color: #00000000;
+    }
+
+    .dark-mode header {
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)),
+      url('https://i.ibb.co/NnTKK892/IMG-0083.jpg') no-repeat center center/cover;
+    }
+
+    .dark-mode #about, .dark-mode #contact {
+      background-color: #222;
+      color: #ddd;
+    }
+
+    .dark-mode a {
+      color: #0af;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 32px;
+      }
+
+      nav a {
+        display: block;
+        margin: 5px 0;
+      }
+
+      section {
+        padding: 60px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+
+  <header id="home">
+    <div class="toggle">
+    
+  </div>
+    <h1>i,m shivan</h1>
+    <p>پڕۆگرامەر و دیزاینەری وێب</p>
+  </header>
+
+  
+
+  <section id="about">
+    <img src="https://i.ibb.co/20tQbtLX/IMG-0252.jpg" alt="وێنەی من" />
+    <h2>دەربارەی من</h2>
+    <p>ئەز شڤانم، ئیکم ژوان کەسانم کو خایالئت من بـ،کود و دیزاین دفەگوهئزم خوشحالم بـ دروستکرنا وئبسایتا یاری و بەرنامئت تایبەت ، کارئ خو بـ دل و رووحم دکەم،
+هەمی روژ رادبمە فە بو باشتر بوونئ.</p>
+  </section>
+
+  <div style="margin-top: 40px;">
+  <h3 style="text-align: center;">📷 وێنە</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px;">
+    <img src="https://i.ibb.co/1JJ5TRGY/IMG-0295.jpg" alt="gallery" style="width: 30%; border-radius: 10px;">
+    <img src="https://i.ibb.co/wNzmwpDt/IMG-0294.jpg" alt="gallery" style="width: 30%; border-radius: 10px;">
+    <img src="https://i.ibb.co/NnTRsNBR/6-A337-B16-99-C9-44-B8-A56-C-86646500-DD8-E.png" alt="gallery" style="width: 30%; border-radius: 10px;">
+  </div>
+</div>
+  <section id="contact">
+    <h2>پەیوەندی</h2>
+    <p>دشئی پەیوەندیئ بمە بکەی:</p>
+    <p><a href="mailto:iamshvan@gmail.com">✉️ iamshvan@gmail.com</a></p>
+
+    <div style="margin-top: 20px;">
+      <p>لدیڤ من بگەرە لـ:</p>
+      <a href="https://instagram.com/iamshvan.26" target="_blank">📸 Instagram</a> |
+<a href="https://github.com/shivanjamal" target="_blank">💻 GitHub</a> |
+<a href="https://www.linkedin.com/in/iam-shvan-313963373/" target="_blank">💼 LinkedIn</a>
+    </div>
+  </section>
+<form style="margin-top: 30px;">
+  <label>ناف:</label><br>
+  <input type="text" placeholder="نافئ خو بنفیسە.. " style="width:100%; padding:10px; margin-bottom:10px;"><br>
+  
+  <label>ئیمەیڵ:</label><br>
+  <input type="email" placeholder="ئیمێلێ خو بنفیسە.. " style="width:100%; padding:10px; margin-bottom:10px;"><br>
+  
+  <label>پەیام:</label><br>
+  <textarea rows="5" placeholder="پەیاما خو بنفیسە.. " style="width:100%; padding:10px;"></textarea><br>
+  
+  <button type="submit" style="margin-top:10px; padding:10px 20px; background:#00aaff; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+     فرێکرنا پەیامئ
+  </button>
+</form>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+
+</body>
+</html>
