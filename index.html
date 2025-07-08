@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shvan Dev</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -181,20 +183,25 @@
 <a href="https://www.linkedin.com/in/iam-shvan-313963373/" target="_blank">💼 LinkedIn</a>
     </div>
   </section>
- <form action="https://formspree.io/f/xyzjqkdj" method="POST" onsubmit="return confirm('سوپاس! پەیاما تە هاتە فرئکرن 📨');">
-  <label>ناف:</label><br>
-  <input type="text" name="name" required placeholder="نافئ خو بنفیسە.." style="width:100%; padding:10px; margin-bottom:10px;"><br>
+ <form action="https://formspree.io/f/xyzjqkdj" method="POST" id="contact-form">
+  <input type="text" name="name" placeholder="ناف:" required><br>
+  <input type="email" name="email" placeholder="ئیمێلێ خو" required><br>
+  <textarea name="message" placeholder="پەیاما خو" required></textarea><br>
 
-  <label>ئیمەیڵ:</label><br>
-  <input type="email" name="email" required placeholder="ئیمێلێ خو بنفیسە.." style="width:100%; padding:10px; margin-bottom:10px;"><br>
-
-  <label>پەیام:</label><br>
-  <textarea name="message" required rows="5" placeholder="پەیاما خو بنفیسە.." style="width:100%; padding:10px;"></textarea><br>
-
-  <button type="submit" style="margin-top:10px; padding:10px 20px; background:#00aaff; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+  <!-- reCAPTCHA -->
+  <button class="g-recaptcha"
+          data-sitekey="6LfLYnsrAAAAAGAOXGCw16fZCFhSZz_XClrfhHXj"
+          data-callback="onSubmit"
+          data-action="submit">
     فرێکرنا پەیامئ
   </button>
 </form>
+<script>
+  function onSubmit(token) {
+    document.getElementById('contact-form').submit();
+  }
+</script>
+
 
   <script>
     function toggleDarkMode() {
