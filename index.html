@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WOLVES | YouTube Search</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #121212;
+      color: #eee;
+      margin: 0;
+      padding: 0 16px;
+      transition: background 0.5s ease;
+    }
+
+    header {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff4c60;
+      animation: fadeInDown 1s ease;
+    }
+
+    #logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #ff4c60;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #searchSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    #searchQuery {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #2c2c2c;
+      color: #fff;
+    }
+
+    #searchBtn {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #ff4c60;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    #searchBtn:hover {
+      background: #e03f53;
+    }
+
+    #results {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .video-card {
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 76, 96, 0.3);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .video-card iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .video-card h4 {
+      margin: 10px 0 5px;
+      color: #ff4c60;
+    }
+
+    .video-card p {
+      font-size: 14px;
+      color: #ccc;
+      height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 30px 0 20px 0;
+      color: #555;
+    }
+
+    .social-icon {
+      margin: 0 10px;
+      font-size: 20px;
+      color: #ff4c60;
+      transition: color 0.3s;
+    }
+
+    .social-icon:hover {
+      color: #fff;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Desktop Blocker */
+    @media (min-width: 768px) {
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      body *:not(.desktop-warning) {
+        display: none !important;
+      }
+
+      .desktop-warning {
+        display: block !important;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        padding: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop-warning" style="display: none;">
+    🖥️ هیفی دکەم ماڵبەری لسەر موبایلئ فەکە.<br />
+    📱ئەڤ خزمەت گوزاریە بتنئ بو ئەندامئت موبایلە
+  </div>
+
+  <header>
+  <div id="logo" style="display: flex; justify-content: center; align-items: center; gap: 12px;">
+    <img src="https://i.ibb.co/p6qXWCcV/Monochrome-Wolf-Mascot-e-Sports-Gaming-Logo.png" alt="Logo" style="height: 48px; width: auto; border-radius: 8px;"/>
+    <span style="font-size: 28px; font-weight: bold; color: #ff4c60;">WOTUBE</span>
+  </div>
+</header>
+
+  <section id="searchSection">
+    <input id="searchQuery" type="text" placeholder="🔍   ناڤئ ڤیدیو یئ بنڤیسە..." />
+    <button id="searchBtn">لئگەریان</button>
+  </section>
+
+  <section id="results"></section>
+
+  <footer>
+    <div>
+      <a href="https://www.instagram.com/iamshvan.26?igsh=NDkxNjN4bTd2eDEw&utm_source=qr" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@iamshvan?_t=ZS-8yMgpT9XH0R&_r=1" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+      <a href="https://youtube.com/@iamshvan?si=4SdqqhImyv1juQHm" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div>© 2025 by iamshvan</div>
+  </footer>
+
+  <script>
+  const apiKey = 'Your api key';
+  const results = document.getElementById('results');
+  const searchBtn = document.getElementById('searchBtn');
+  const searchQueryInput = document.getElementById('searchQuery');
+
+  let nextPageToken = '';
+  let loading = false;
+
+  function createVideoCard(video) {
+    const videoId = video.id.videoId;
+    const title = video.snippet.title;
+    const description = video.snippet.description;
+
+    const div = document.createElement('div');
+    div.className = 'video-card';
+    div.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/${videoId}" allow="encrypted-media" allowfullscreen></iframe>
+      <h4>${title}</h4>
+      <p>${description}</p>
+    `;
+    return div;
+  }
+
+  function searchVideos(query, append = false) {
+    if (loading) return;
+    loading = true;
+
+    let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&type=video&q=${encodeURIComponent(query)}&key=${apiKey}`;
+    if (append && nextPageToken) {
+      url += `&pageToken=${nextPageToken}`;
+    }
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        nextPageToken = data.nextPageToken || '';
+        if (!append) results.innerHTML = '';
+        data.items.forEach(video => {
+          results.appendChild(createVideoCard(video));
+        });
+        loading = false;
+      })
+      .catch(err => {
+        console.error(err);
+        loading = false;
+      });
+  }
+
+  // 👉 ئەم بەشە زیاد کراوە بە داوای خۆت:
+  searchBtn.addEventListener('click', () => {
+    const query = searchQueryInput.value.trim();
+    const oldGif = document.getElementById('warningGif');
+    if (oldGif) oldGif.remove();
+
+    if (!query) {
+      alert('هیفی دکەم ناڤەکی لڤئری بنڤیسە');
+
+      const gif = document.createElement('img');
+      gif.src = 'https://i.pinimg.com/originals/d7/d4/29/d7d429894225f32b0d693827225a0cdc.gif';
+      gif.style.width = '200px';
+      gif.style.margin = '20px auto';
+      gif.style.display = 'block';
+      gif.id = 'warningGif';
+
+      results.prepend(gif);
+      return;
+    }
+
+    nextPageToken = '';
+    searchVideos(query, false);
+  });
+
+  window.addEventListener('scroll', () => {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100 && !loading && nextPageToken) {
+      const query = searchQueryInput.value.trim();
+      if (query) {
+        searchVideos(query, true);
+      }
+    }
+  });
+
+  searchQueryInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      searchBtn.click();
+    }
+  });
+</script>
+</body>
+</html>
