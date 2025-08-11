@@ -4,25 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WOTUBE | Bi xêr hatî</title>
-
-  <!-- ADSENSE SCRIPT START -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8356023561241179"
-     crossorigin="anonymous"></script>
-  <!-- ADSENSE SCRIPT END -->
-
-<!-- ADSENSE SCRIPT START -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8356023561241179"
-     crossorigin="anonymous"></script>
-<!-- iamshvan -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-8356023561241179"
-     data-ad-slot="2742369281"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  <!-- ADSENSE SCRIPT END -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -103,9 +84,32 @@
     .video-info { display: flex; justify-content: space-between; font-size: 0.9rem; opacity: 0.7; }
     .message { text-align: center; padding: 40px 20px; font-size: 1.5rem; font-weight: 700; color: #bdc3c7; }
     .loader { text-align: center; font-weight: 700; font-size: 1.2rem; color: var(--primary-accent); padding: 50px 0; }
+    
+    /* === Ad Styles === */
+    .ad-container {
+        margin: 30px 0;
+        display: flex; justify-content: center; align-items: center;
+    }
+    .ad-placeholder {
+        width: 100%; max-width: 320px; height: 100px;
+        background-color: var(--line-color); border: 2px dashed #ccc;
+        display: flex; justify-content: center; align-items: center;
+        font-weight: 700; color: #aaa; border-radius: 8px;
+    }
+    .ad-card-placeholder {
+        width: 100%; height: 300px; background-color: var(--surface-color);
+        border-radius: 16px; box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        display: flex; justify-content: center; align-items: center;
+        font-weight: 700; color: #aaa; border: 2px dashed var(--line-color);
+    }
+    
     footer { text-align: center; padding: 30px 0; border-top: 1px solid var(--line-color); margin-top: 20px; }
     @keyframes popIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8356023561241179"
+     crossorigin="anonymous"></script>
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8356023561241179"
+     crossorigin="anonymous"></script>
 </head>
 <body>
   
@@ -148,6 +152,9 @@
                       <input id="searchQuery" type="text" placeholder="ل تشەکێ بگەڕێ..." />
                   </div>
               </section>
+              <div id="adSlot-Banner" class="ad-container">
+                  <div class="ad-placeholder">Banner Ad (320x100)</div>
+              </div>
               <div id="results"></div>
           </main>
           <footer> <!-- Footer content --> </footer>
@@ -191,7 +198,7 @@
         if (user) {
             authPage.style.display = 'none';
             mainApp.style.display = 'block';
-            userProfileIcon.title = user.email; // Set email as a tooltip
+            userProfileIcon.title = user.email;
             if (!resultsDiv.innerHTML.trim()) {
                 fetchTrending();
             }
@@ -253,7 +260,15 @@
             resultsDiv.innerHTML = '';
             if (data.error) { showMessage('کێشەیەک د ئینانا ئەنجامان دا هەیە.'); return; }
             if (data.items.length === 0) { showMessage(`هیچ ئەنجامەک بۆ "${query}" نەهاتە دیتن.`); return; }
-            data.items.forEach((video, index) => resultsDiv.appendChild(createVideoCard(video, index)));
+            data.items.forEach((video, index) => {
+                resultsDiv.appendChild(createVideoCard(video, index));
+                if (index === 3) {
+                    const adCard = document.createElement('div');
+                    adCard.className = 'ad-card-placeholder';
+                    adCard.innerHTML = 'In-Feed Ad';
+                    resultsDiv.appendChild(adCard);
+                }
+            });
         } catch (err) { showMessage('کێشەیەکا تۆڕێ هەیە.'); } finally { loading = false; }
     }
 
@@ -269,6 +284,12 @@
             data.items.forEach((video, index) => {
                 const videoData = { id: { videoId: video.id }, snippet: video.snippet };
                 resultsDiv.appendChild(createVideoCard(videoData, index, video.statistics));
+                if (index === 3) {
+                    const adCard = document.createElement('div');
+                    adCard.className = 'ad-card-placeholder';
+                    adCard.innerHTML = 'In-Feed Ad';
+                    resultsDiv.appendChild(adCard);
+                }
             });
         } catch (err) { showMessage('کێشەیەکا تۆڕێ هەیە.'); } finally { loading = false; }
     }
@@ -307,8 +328,6 @@
     searchQueryInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') { e.preventDefault(); searchBtn.click(); }
     });
-
-
   </script>
 </body>
 </html>
